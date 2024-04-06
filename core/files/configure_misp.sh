@@ -103,7 +103,7 @@ set_up_oidc() {
     fi
 
     # Check required variables
-    check_env_vars OIDC_PROVIDER_URL OIDC_CLIENT_ID OIDC_CLIENT_SECRET OIDC_ROLES_PROPERTY OIDC_ROLES_MAPPING OIDC_DEFAULT_ORG
+    check_env_vars OIDC_PROVIDER_URL OIDC_CLIENT_ID OIDC_CLIENT_SECRET OIDC_ROLES_PROPERTY OIDC_ROLES_MAPPING OIDC_DEFAULT_ORG OIDC_USERNAME_PROPERTY OIDC_DEFAULT_ROLE
 
     sudo -u www-data php /var/www/MISP/tests/modify_config.php modify "{
         \"Security\": {
@@ -118,7 +118,9 @@ set_up_oidc() {
             \"client_secret\": \"${OIDC_CLIENT_SECRET}\",
             \"roles_property\": \"${OIDC_ROLES_PROPERTY}\",
             \"role_mapper\": ${OIDC_ROLES_MAPPING},
-            \"default_org\": \"${OIDC_DEFAULT_ORG}\"
+            \"default_org\": \"${OIDC_DEFAULT_ORG}\",
+            \"username_property\": \"${OIDC_USERNAME_PROPERTY}\",
+            \"default_role\": \"${OIDC_DEFAULT_ROLE}\"
         }
     }" > /dev/null
 
